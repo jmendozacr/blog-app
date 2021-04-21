@@ -1,19 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Header from './components/header/Header';
 import About from './pages/About';
 import Blog from './pages/Blog';
 import Home from './pages/Home';
+import Article from './pages/Article';
+import Error404 from './pages/Error404';
 
 function App() {
     return (
         <Container>
             <Header/>
             <Main>
-                <Route exact path="/" component={Home} />
-                <Route path="/blog" component={Blog} />
-                <Route path="/about" component={About} />
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route path="/blog" component={Blog} />
+                    <Route path="/about" component={About} />
+                    <Route path="/post/:id" component={Article} />
+                    <Route component={Error404} />
+                </Switch>
             </Main>
         </Container>
     );
